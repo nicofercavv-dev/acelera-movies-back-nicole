@@ -1,4 +1,4 @@
-import { User } from "@models/entity/User"
+import { User } from "@models/User"
 import { response } from "express"
 import { getRepository } from "typeorm"
 

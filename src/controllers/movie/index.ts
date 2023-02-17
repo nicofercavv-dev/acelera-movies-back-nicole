@@ -1,4 +1,4 @@
-import { Movie } from "@models/entity/Movie"
+import { Movie } from "@models/Movie"
 import { convertMovieRequest } from "@service/movie/movieRequest"
 import { validate } from "class-validator"
 import { JsonWebKey } from "crypto"
@@ -88,6 +88,7 @@ export const updateMovie = async (request, response) => {
     } = convertMovieRequest(request.body)
 
     const movieRepository = getRepository(Movie)
+
     let movie = await movieRepository.findOne({ where: { id } })
 
     if (title) {

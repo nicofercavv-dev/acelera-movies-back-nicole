@@ -1,5 +1,4 @@
-import { Movie } from "@models/entity/Movie"
-import { getRepository } from "typeorm"
+import { Movie } from "@models/Movie"
 
 export const convertMovieRequest = (body) => {
   const {
@@ -9,6 +8,7 @@ export const convertMovieRequest = (body) => {
     gender,
     classification,
     image,
+    releaseDate,
     director,
     writter,
     studio,
@@ -16,9 +16,6 @@ export const convertMovieRequest = (body) => {
     awards,
     note,
   } = body
-
-  let dateFormatted = body.releaseDate.split("/")
-  dateFormatted = `${dateFormatted[1]}/${dateFormatted[0]}/${dateFormatted[2]}`
 
   const newMovie = new Movie()
 
@@ -28,7 +25,7 @@ export const convertMovieRequest = (body) => {
   newMovie.gender = gender
   newMovie.classification = classification
   newMovie.image = image
-  newMovie.releaseDate = dateFormatted && new Date(dateFormatted)
+  newMovie.releaseDate = releaseDate ? new Date(releaseDate) : null
   newMovie.director = director
   newMovie.writter = writter
   newMovie.studio = studio
